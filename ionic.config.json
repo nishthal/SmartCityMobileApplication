@@ -1,0 +1,8 @@
+{
+  "name": "smartcityapp",
+  "app_id": "a1bcad3e",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
