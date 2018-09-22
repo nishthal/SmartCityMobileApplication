@@ -93,14 +93,14 @@ export class AuthenService {
     this.num=v.toString();
    
     return new Promise((resolve, reject) => {
- 
-       var headers = new Headers();
+   let headers = new Headers();
+      // var headers = new Headers();
        headers.append('Content-Type', 'application/json' );
-       headers.append('Token', '7db210b5bcb0b8177aac247a96c3e99e224f9f5c');
-       const requestOptions = new RequestOptions({ headers: headers });
+       headers.append('Authorization', 'Token '+ token);
+       //const requestOptions = new RequestOptions({ headers: headers });
       
        console.log(headers);
-        this.http.get( 'http://127.0.0.1:8000/accounts/api/users/',requestOptions)
+        this.http.get( 'http://127.0.0.1:8000/accounts/api/users/',{headers:headers})
           .map(res=>res.json()).subscribe(data => {
             resolve(data);
           }, (err) => {
