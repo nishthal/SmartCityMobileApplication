@@ -1,0 +1,92 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button icon-only menuToggle>
+              <ion-icon name="menu"></ion-icon>
+            </button>
+            </ion-buttons>
+      <ion-title>LocateDustbins</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+ 
+
+  <ion-content padding>
+      
+    <div class="container">
+          <h1>Enter Location Or Press Locate Me</h1>
+          <div class="form-group">
+            <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search  [formControl]="searchControl">
+            <!-- [formControl]="searchControl"-->
+          </div>
+          
+        </div>
+         <ion-grid>
+            <ion-row>
+              <ion-col>
+                <button ion-button block
+                outline
+                type="button"                    
+                icon-left
+                (click)="onLocate()">
+                <ion-icon name="locate"></ion-icon>
+                  Locate me
+              </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button
+                block
+                outline
+                type="button"
+                icon-left (click)="onOpenMap()">
+              <ion-icon name="map"></ion-icon>
+              Select on Map
+              </button>
+              </ion-col>
+            </ion-row></ion-grid>
+                 
+      <ion-row *ngIf="locationIsSet">
+        <ion-col>
+              
+          <agm-map
+            [latitude]="location.latitude"
+            [longitude]="location.longitude"
+            [zoom]="16"
+            >
+          <agm-marker [latitude] = "location.latitude" [longitude] = "location.longitude" [label]="str"
+          [opacity]=".9"
+          ></agm-marker>
+         <div *ngFor = "let m of trash, let i =index" >
+           
+         <div *ngIf ="m.draggable == true">
+          <agm-marker 
+          [latitude]="m.latitude" 
+          [longitude]="m.longitude"
+        
+          [label]='m.label'
+          >
+        <agm-info-window>
+        <strong>{{m.name}}</strong>  
+          </agm-info-window>
+      </agm-marker>
+      </div>
+      <div *ngIf = "m.draggable == false">  
+        <agm-marker 
+        [latitude] = "m.latitude" 
+        [longitude] = "m.longitude"
+        [label] = 'm.label'>
+      <agm-info-window>
+      <strong>{{m.name}}</strong>  
+        </agm-info-window>
+    </agm-marker>  
+    </div>
+         </div>
+        </agm-map>
+        
+      </ion-col>
+      </ion-row>
+  </ion-content>
+  

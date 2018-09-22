@@ -1,0 +1,46 @@
+<!--
+  Generated template for the SigninPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>SignUp</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onSignup(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>
+          Phone Number
+        </ion-label>
+  <ion-input type="number" placeholder="+91-" ngModel name="phonenumber" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>
+          email
+        </ion-label>
+  <ion-input type="email" placeholder="Enter Email" ngModel name="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input type="password" placeholder="Password" ngModel name="password1" required></ion-input>
+        </ion-item>
+        <ion-item>
+        <ion-input type="password" placeholder="Confirm Password" ngModel name="password2" required></ion-input>
+        </ion-item>
+      </ion-list>
+    <button ion-button block type = "submit" [disabled] = "!f.valid" >SignUp</button>
+  </form>
+  </ion-content>
+  
