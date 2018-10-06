@@ -1,21 +1,126 @@
 <ion-header>
 
-    <ion-navbar>
-        <ion-buttons end>
-            <button ion-button icon-only menuToggle>
-              <ion-icon name="menu"></ion-icon>
+  <ion-navbar>
+      <ion-buttons end>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          </ion-buttons>
+    <ion-title>Parking</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+
+<ion-content padding>
+    
+  <!--<div class="container">
+        <h1>Enter Location Or Press Locate Me</h1>
+        <div class="form-group">
+          <ion-nput placeholder="search for location" id="txtHome" type="text" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search  [formControl]="searchControl">
+         
+        </div>
+        
+      </div>-->
+      <ion-item>
+          <ion-label floating>Enter Address</ion-label>
+          <ion-input id="txtHome" type="text"></ion-input>
+      </ion-item>
+       <ion-grid>
+          <ion-row>
+            <ion-col>
+              <button ion-button block
+              outline
+              type="button"                    
+              icon-left
+              (click)="onLocate()">
+              <ion-icon name="locate"></ion-icon>
+                Locate me
             </button>
-            </ion-buttons>
-      <ion-title>bookspace</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  
-  <ion-content padding>
-  
+            </ion-col>
+            <ion-col>
+              <button ion-button
+              block
+              outline
+              type="button"
+              icon-left (click)="onOpenMap()">
+            <ion-icon name="map"></ion-icon>
+            Select on Map
+            </button>
+            </ion-col>
+          </ion-row></ion-grid>
+               
+    <ion-row *ngIf="locationIsSet">
+      <ion-col>
+            
+        <agm-map
+          [latitude]="location.latitude"
+          [longitude]="location.longitude"
+          [zoom]="16"
+          >
+        <agm-marker [latitude] = "location.latitude" [longitude] = "location.longitude" [label]="labelOptions" 
+        [opacity]=".9"
+        ></agm-marker>
+       <div *ngFor = "let m of parkings, let i =index" >
+         
+       <div *ngIf ="m.isFull == true">
+        <agm-marker 
+        [latitude]="m.latitude" 
+        [longitude]="m.longitude"
+       
+        [label]='label1'
+        >
+      <agm-info-window>
+          <strong>{{m.location}}</strong>   <br>
+          <strong>{{m.price}}</strong>  </agm-info-window>
+    </agm-marker>
+    </div>
+    <div *ngIf = "m.isFull == false">  
+      <agm-marker 
+      [latitude] = "m.latitude" 
+      [longitude] = "m.longitude"
+      [label] = 'label2'>
+    <agm-info-window>
+        <strong>{{m.location}}</strong> <br>  
+    
+    <button                     
+    (click)="book(m,i)">Book</button>
+    </agm-info-window>
+  </agm-marker>  
+  </div>
+       </div>
+       <div *ngFor = "let m of onstreet, let i =index" >
+         
+        <div *ngIf ="m.isOccupied == true">
+         <agm-marker 
+         [latitude]="m.latitude" 
+         [longitude]="m.longitude"
+        
+         [label]='labelOptions2'
+         >
+       <agm-info-window>
+           <strong>{{m.location}}</strong>   <br>
+           <strong>{{m.city}}</strong>  </agm-info-window>
+     </agm-marker>
+     </div>
+     <div *ngIf = "m.isOccupied == false">  
+       <agm-marker 
+       [latitude] = "m.latitude" 
+       [longitude] = "m.longitude"
+       [label] = 'labelOptions3'>
+     <agm-info-window>
+         <strong>{{m.location}}</strong> <br>  
+     <strong>{{m.city}}</strong>
+     <button                     
+     (click)="book(m,i)">Book</button>
+     </agm-info-window>
+   </agm-marker>  
+   </div>
+        </div>
+      </agm-map>
       
-  
-  </ion-content>
-  
+    </ion-col>
+    </ion-row>
+</ion-content>

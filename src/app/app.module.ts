@@ -25,12 +25,15 @@ import { parkinglotService } from './services/parkinglot';
 import { AuthService } from './services/auth';
 import { AuthenService } from './services/authen';
 import { dustbinService } from './services/dustbin';
+import { BookPage } from '../pages/book/book';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    BookspacePage,SigninPage,SignupPage,DustbinPage,SetLocationPage
+    BookPage,
+    BookspacePage,
+    SigninPage,SignupPage,DustbinPage,SetLocationPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { dustbinService } from './services/dustbin';
     MyApp,
     HomePage,
     ListPage,
-    BookspacePage,SigninPage,SignupPage,DustbinPage,SetLocationPage
+    BookspacePage,SigninPage,SignupPage,DustbinPage,SetLocationPage,BookPage
   ],
   providers: [CookieService,Storage,AuthenService,
     StatusBar,

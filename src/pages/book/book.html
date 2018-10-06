@@ -1,0 +1,50 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Book</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-grid>
+<ion-row>
+    <ion-col>
+        <h2 style="color:blue;">Location:</h2>
+      </ion-col>
+  <ion-col>
+    <h2>{{parkinglot.location}}</h2>
+  </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
+        <h2 style="color:blue;">Price:</h2>
+      </ion-col>
+  <ion-col>
+     <h2> {{parkinglot.price}}</h2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+          <h2 style="color:blue;">ParkedUsers:</h2>
+        </ion-col>
+      <ion-col>
+        <h2>{{parkinglot.parkedusers}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <button
+            color="danger"
+              ion-button
+              outline
+              block
+              (click)="BookSlot()">Book</button>
+        </ion-col>
+      </ion-row>
+      
+</ion-grid>
+</ion-content>
+

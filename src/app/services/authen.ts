@@ -67,9 +67,13 @@ export class AuthenService {
     return new Promise((resolve, reject) => {
  
         let headers = new Headers();
+        //let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
         headers.append('Content-Type', 'application/json');
  
-        this.http.post('http://127.0.0.1:8000/accounts/api/login/' , { username:username , password:password }, {headers: headers})
+        this.http.post('http://192.168.43.222:8000/accounts/api/login/' , { username:username , password:password }, {headers: headers})
           .subscribe(res => {
             console.log(res);
             let data = res.json();
@@ -95,12 +99,15 @@ export class AuthenService {
     return new Promise((resolve, reject) => {
    let headers = new Headers();
       // var headers = new Headers();
-       headers.append('Content-Type', 'application/json' );
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+      headers.append('Accept','application/json');
+      headers.append('Content-Type', 'application/json' );
        headers.append('Authorization', 'Token '+ token);
        //const requestOptions = new RequestOptions({ headers: headers });
       
        console.log(headers);
-        this.http.get( 'http://127.0.0.1:8000/accounts/api/users/',{headers:headers})
+        this.http.get( 'http://192.168.43.222:8000/accounts/api/users/'+username+'/',{headers:headers})
           .map(res=>res.json()).subscribe(data => {
             resolve(data);
           }, (err) => {

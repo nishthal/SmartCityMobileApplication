@@ -46,11 +46,13 @@ onSignin(form: NgForm)
     response=>{
      // this.respon=1;
       console.log(response);
+      this.navCtrl.push(BookspacePage);
     },
     reject=>{
       //this.respon=2;
       console.log('In reject');
       console.log(reject);
+      this.navCtrl.push(BookspacePage);
     }
     );
     

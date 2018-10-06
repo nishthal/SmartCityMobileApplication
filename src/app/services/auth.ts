@@ -14,12 +14,17 @@ export class AuthService{
     constructor(private http: HttpClient)
     {   
 
+
     }
     signup(email: string ,phonenumber : number, password : string)
     {    
         var v=phonenumber;        
         this.num=v.toString();
-        return this.http.post( 'http://127.0.0.1:8000/accounts/api/users/' , { mobile : this.num , email : email , password : password} );
+        console.log(this.num);
+        console.log(phonenumber);
+        console.log(email);
+        console.log(password);    
+        return this.http.post( 'http://192.168.43.222:8000/accounts/api/users/' , { mobile : this.num, email : email , password : password } );
     }
     signin(phonenumber : number, password : string){  
        return this.http.post( 'http://127.0.0.1:8000/accounts/api/login/' , {username:phonenumber,password:password} );

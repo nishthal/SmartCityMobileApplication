@@ -49,23 +49,24 @@ export class SignupPage {
     }
     else{
       //loading.dismiss();
-      this.authService.signup(form.value.email,form.value.phonenumber,form.value.password).subscribe(data=>{
+      this.authService.signup(form.value.email,form.value.phonenumber,form.value.password1).subscribe(data=>{
+        const toast =this.toastCtrl.create({
+          message: 'User was added successfully',
+          duration: 3000,
+          position: 'top'
+      })
+      toast.present();
+      toast.onDidDismiss(() => {
+        this.navCtrl.push(SigninPage);
+        console.log('Dismissed toast');
+      });
         console.log(data);
       },
     error=>{
       console.log(error);
     }
     ); 
-        const toast =this.toastCtrl.create({
-        message: 'User was added successfully',
-        duration: 3000,
-        position: 'top'
-    })
-    toast.present();
-    toast.onDidDismiss(() => {
-      this.navCtrl.push(SigninPage);
-      console.log('Dismissed toast');
-    });
+
       /*  
    this.authService.signup(form.value.email,form.value.phonenumber,form.value.password)
     .subscribe(response=>{

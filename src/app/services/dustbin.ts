@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 import { dustbin } from '../../models/dustbin';
 @Injectable()
 export class dustbinService{
-    private getUrl = 'http://127.0.0.1:8000/dustbin/api/dustbins/?format=json' ;
+    private getUrl = 'http://192.168.43.222:8000/dustbin/api/dustbins/?format=json' ;
     public dustbins: dustbin[];
     constructor(private http: HttpClient)
     {
@@ -14,7 +14,7 @@ export class dustbinService{
     }
     getDustbins()
     {
-        return this.http.get('http://127.0.0.1:8000/dustbin/api/dustbins/?format=json').do((data)=>{
+        return this.http.get('http://192.168.43.222:8000/dustbin/api/dustbins/?format=json').do((data)=>{
             if(data)
             {
                  this.dustbins = JSON.parse(JSON.stringify(data)) ;
